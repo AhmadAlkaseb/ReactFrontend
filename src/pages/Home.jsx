@@ -1,15 +1,3 @@
-<<<<<<< Updated upstream
-export function Home() {
-    return (
-        <>
-          <div>
-              <h1>Find your next hotel today!</h1>
-
-          </div>
-        </>
-    )
-}
-=======
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,4 +13,3 @@ const Home = () => {
 };
 
 export default Home;
->>>>>>> Stashed changes

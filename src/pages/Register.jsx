@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PRODUCTION_API_BASE_URL } from '../utils/globalStyles';
+import { PRODUCTION_API_BASE_URL } from '../utils/globalVariables';
 
 export function Register({ setIsAuthenticated }) {
     const [email, setEmail] = useState('');
