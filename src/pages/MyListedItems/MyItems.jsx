@@ -12,7 +12,13 @@ const MyItems = ({update,setUpdate,setItem}) => {
                 }
             })
             .then(response => response.json())
-            .then(data => setItems(data))
+            .then(data => {
+                if (Array.isArray(data)) {
+                    setItems(data);
+                } else {
+                    setItems([]);
+                }
+            })
         },[update])
 
 
@@ -54,7 +60,7 @@ const MyItems = ({update,setUpdate,setItem}) => {
             </tr>
         </thead>
         <tbody>
-        {items.map((item) =>(
+        {items && items.map((item) =>(
             <tr key = {item.id}>
             <td>{item.id}</td>
             <td>{item.title}</td>
