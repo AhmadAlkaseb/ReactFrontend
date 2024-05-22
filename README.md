@@ -44,9 +44,6 @@ Brugere kan oprette sig og logge på hjemmesiden. Hver bruger har mulighed for a
 **Backend repository**  
 [Tryk her](https://github.com/AhmadAlkaseb/WebShopBackend)  
 
-**Frontend repository**  
-[Tryk her](https://github.com/AhmadAlkaseb/WebShopFrontend)
-
 **PowerPoint Design**  
 [Tryk her](https://docs.google.com/presentation/d/1tMKkrRPzy8CNIkY6ZMPVO2yr8kHRrLsOsiXY3-lI6dY/edit#slide=id.p) 
 
