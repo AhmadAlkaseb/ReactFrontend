@@ -8,7 +8,6 @@ const MainNav = () => {
       <li><NavLink to="/itemsforsale">Items for sale</NavLink> </li>
       <li><NavLink to="/setitemforsale">Set item for sale</NavLink> </li>
       <li><NavLink to="/mylisteditems">My listed items</NavLink> </li>
-      <li><NavLink to="/createitem">Create item</NavLink></li>
       <li><NavLink to="/logout">Log out</NavLink> </li>
     </ul>
     </>
