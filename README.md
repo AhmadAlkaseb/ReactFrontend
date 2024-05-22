@@ -40,7 +40,6 @@ Brugere kan oprette sig og logge på hjemmesiden. Hver bruger har mulighed for a
 
 ### Links
 
-
 **Backend repository**  
 [Tryk her](https://github.com/AhmadAlkaseb/WebShopBackend)  
 
