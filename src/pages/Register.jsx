@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PRODUCTION_API_BASE_URL } from '../utils/globalVariables';
 
@@ -57,6 +57,7 @@ export function Register({ setIsAuthenticated }) {
     };
 
     return (
+
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="email">Email:</label>

@@ -5,17 +5,13 @@ const Logout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('email');
-    localStorage.removeItem('roles');
-    localStorage.removeItem('isAuthenticated');
+    localStorage.clear();
     navigate('/login');
-  }, [navigate]);
+  }, []);
 
   return (
-    <div>
-      <h1>Logging out...</h1>
-    </div>
+    <>
+    </>
   );
 };
 

@@ -9,9 +9,7 @@ import AppLayout from './layout/AppLayout';
 import Loguot from './pages/Loguot';
 import ItemsForSale from './pages/ItemsForSale';
 import SetItemForSale from './pages/SetItemForSale';
-import {CreateItem} from "./pages/CreateItem.jsx";
 import MyItemsPage from './pages/MyListedItems/MyItemsPage';
-import Item from './pages/Item.jsx';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
@@ -29,8 +27,6 @@ function App() {
           <Route path="/home" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Home /></ProtectedRoute>} />
           <Route path="/itemsforsale" element={<ProtectedRoute isAuthenticated={isAuthenticated}><ItemsForSale /></ProtectedRoute>} />
           <Route path="/setitemforsale" element={<ProtectedRoute isAuthenticated={isAuthenticated}><SetItemForSale /></ProtectedRoute>} />
-          <Route path="/item/:itemid" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Item /></ProtectedRoute>} />
-          <Route path="/createitem" element={<ProtectedRoute isAuthenticated={isAuthenticated}><CreateItem /></ProtectedRoute>} />
 
           <Route path="/mylisteditems" element={<ProtectedRoute isAuthenticated={isAuthenticated}><MyItemsPage /></ProtectedRoute>} />
 

@@ -54,6 +54,21 @@ const MyItemsInputForm = ({ update, setUpdate, item, setItem }) => {
         });
     };
 
+    const handleCancel = (event) => {
+        event.preventDefault();
+        setItem({
+            id: '',
+            title: '',
+            description: '',
+            price: '',
+            status: '',
+            fullName: '',
+            phoneNumber: '',
+            address: '',
+            zipCode: ''
+        });
+    };
+
     return (
         <>
             {item.id && (
@@ -123,6 +138,7 @@ const MyItemsInputForm = ({ update, setUpdate, item, setItem }) => {
                         onChange={handleChange} 
                     />
                     <button type='submit'>Save edit</button>
+                    <button type='button' onClick={handleCancel}>Cancel</button>
                 </form>
             )}
         </>
