@@ -28,7 +28,7 @@ export default () => {
         Address: {item.address} <br />
         Zip: {item.zipCode} <br />
         Phone: {item.phoneNumber} <br />
-        {/* Email: missing from item? */}
+        Email: {item.userEmail}
       </p>
     </>
   )
