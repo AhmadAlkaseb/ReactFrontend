@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {LOCAL_API_BASE_URL, PRODUCTION_API_BASE_URL} from "../utils/globalVariables.js";
+import {PRODUCTION_API_BASE_URL} from "../utils/globalVariables.js";
 
 export default function SetItemForSale () {
   const [formData, setFormData] = useState({
@@ -9,7 +9,7 @@ export default function SetItemForSale () {
     fullName: '',
     address: '',
     zipCode: '',
-      phoneNumber: ''
+    phoneNumber: ''
   });
   // const [tags, setTags] = useState([]);
   // const [tagInput, setTagInput] = useState('');
