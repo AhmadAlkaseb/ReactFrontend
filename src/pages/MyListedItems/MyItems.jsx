@@ -7,7 +7,7 @@ const MyItems = ({ update, setUpdate, setItem }) => {
     const [filteredItems, setFilteredItems] = useState([]);
 
     useEffect(() => {
-        fetch(`${PRODUCTION_API_BASE_URL}/items/` + localStorage.getItem('email'), {
+        fetch(`${PRODUCTION_API_BASE_URL}/items/personal/` + localStorage.getItem('email'), {
             headers: {
                 'Authorization': `Bearer ` + localStorage.getItem('token'),
                 'Content-Type': 'application/json',
