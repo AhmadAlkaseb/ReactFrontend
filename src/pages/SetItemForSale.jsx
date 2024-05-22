@@ -1,5 +1,16 @@
 import {useState} from 'react';
 import {PRODUCTION_API_BASE_URL} from "../utils/globalVariables.js";
+import styled from "styled-components";
+
+
+const Container = styled.div`
+    margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 
 export default function SetItemForSale () {
   const [formData, setFormData] = useState({
@@ -98,7 +109,7 @@ export default function SetItemForSale () {
   };
 
   return (
-      <>
+      <Container>
       <form onSubmit={handleSubmit}>
           <div>
               <label>
@@ -113,7 +124,7 @@ export default function SetItemForSale () {
           </div>
           <div>
               <label>
-                  Description:
+                  Description:<br/>
                   <textarea
                       name="description"
                       value={formData.description}
@@ -200,6 +211,6 @@ export default function SetItemForSale () {
           <button type="submit">Create Item</button>
       </form>
           {itemCreated && <h1>Item successfully created</h1>}
-      </>
+      </Container>
   );
 }

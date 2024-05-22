@@ -18,12 +18,8 @@ const GlobalStyles = createGlobalStyle`
         --color-purple-200: #e9d5ff;
         --color-purple-300: #d8b4fe;
         --color-purple-400: #c084fc;
-
-
     }
 
-
-    // i starten sørger vi for at der ingen margin og ingen padding er boxsizing - hvad er box sizing???
     * {
         margin: 0;
         padding: 0;
@@ -43,7 +39,6 @@ const GlobalStyles = createGlobalStyle`
         text-align: center;
         margin-bottom: 20px;
     }
-
 
     ul {
         background-color: black;
@@ -70,6 +65,51 @@ const GlobalStyles = createGlobalStyle`
 
         &:hover {
             background-color: #c0c0c0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        ul {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            height: 100vh;
+            width: 100%;
+            background: black;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: left 0.3s ease;
+        }
+
+        ul.active {
+            left: 0;
+        }
+
+        li {
+            margin: 15px 0;
+        }
+
+        .burger {
+            display: flex;
+            position: fixed;
+            top: 15px;
+            right: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 18px;
+        }
+
+        a {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+
+        ul {
+            padding: 5px 0;
         }
     }
 `;
