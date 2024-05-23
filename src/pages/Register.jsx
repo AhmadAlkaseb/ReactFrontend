@@ -1,6 +1,69 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PRODUCTION_API_BASE_URL } from '../utils/globalVariables';
+import styled from 'styled-components';
+
+const FormContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 95vh;
+`;
+
+const Form = styled.form`
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+`;
+
+const FormField = styled.div`
+    margin-bottom: 20px;
+`;
+
+const Label = styled.label`
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+`;
+
+const Input = styled.input`
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    &:focus {
+        border-color: #fda085;
+        outline: none;
+        box-shadow: 0 0 5px rgba(253, 160, 133, 0.5);
+    }
+`;
+
+const ErrorMessage = styled.p`
+    color: red;
+    font-weight: bold;
+    text-align: center;
+`;
+
+const SubmitButton = styled.button`
+    background-color: #fda085;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    &:hover {
+        background-color: #f6d365;
+    }
+`;
 
 export function Register({ setIsAuthenticated }) {
     const [email, setEmail] = useState('');
@@ -57,41 +120,42 @@ export function Register({ setIsAuthenticated }) {
     };
 
     return (
-
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="text"
-                    id="email"
-                    value={email}
-                    onChange={handleEmailChange}
-                    required
-                />
-            </div>
-            <div>
-                <label htmlFor="password1">Password:</label>
-                <input
-                    type="password"
-                    id="password1"
-                    value={password1}
-                    onChange={handlePassword1Change}
-                    required
-                />
-            </div>
-            <div>
-                <label htmlFor="password2">Confirm Password:</label>
-                <input
-                    type="password"
-                    id="password2"
-                    value={password2}
-                    onChange={handlePassword2Change}
-                    required
-                />
-            </div>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <button type="submit">Register</button>
-        </form>
+        <FormContainer>
+            <Form onSubmit={handleSubmit}>
+                <FormField>
+                    <Label htmlFor="email">Email:</Label>
+                    <Input
+                        type="text"
+                        id="email"
+                        value={email}
+                        onChange={handleEmailChange}
+                        required
+                    />
+                </FormField>
+                <FormField>
+                    <Label htmlFor="password1">Password:</Label>
+                    <Input
+                        type="password"
+                        id="password1"
+                        value={password1}
+                        onChange={handlePassword1Change}
+                        required
+                    />
+                </FormField>
+                <FormField>
+                    <Label htmlFor="password2">Confirm Password:</Label>
+                    <Input
+                        type="password"
+                        id="password2"
+                        value={password2}
+                        onChange={handlePassword2Change}
+                        required
+                    />
+                </FormField>
+                {error && <ErrorMessage>{error}</ErrorMessage>}
+                <SubmitButton type="submit">Register</SubmitButton>
+            </Form>
+        </FormContainer>
     );
 }
 
