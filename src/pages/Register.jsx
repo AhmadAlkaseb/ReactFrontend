@@ -51,6 +51,11 @@ const ErrorMessage = styled.p`
     text-align: center;
 `;
 
+const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
 const SubmitButton = styled.button`
     background-color: #fda085;
     color: white;
@@ -62,6 +67,20 @@ const SubmitButton = styled.button`
     transition: background-color 0.3s;
     &:hover {
         background-color: #f6d365;
+    }
+`;
+
+const BackButton = styled.button`
+    background-color: #40E0D0;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    &:hover {
+        background-color: #20B2AA;
     }
 `;
 
@@ -119,6 +138,10 @@ export function Register({ setIsAuthenticated }) {
         }
     };
 
+    const handleBack = () => {
+        navigate(-1);
+    };
+
     return (
         <FormContainer>
             <Form onSubmit={handleSubmit}>
@@ -153,7 +176,10 @@ export function Register({ setIsAuthenticated }) {
                     />
                 </FormField>
                 {error && <ErrorMessage>{error}</ErrorMessage>}
-                <SubmitButton type="submit">Register</SubmitButton>
+                <ButtonContainer>
+                    <BackButton type="button" onClick={handleBack}>Go Back</BackButton>
+                    <SubmitButton type="submit">Register</SubmitButton>
+                </ButtonContainer>
             </Form>
         </FormContainer>
     );
