@@ -1,5 +1,70 @@
 import React, { useEffect, useState } from 'react';
 import { PRODUCTION_API_BASE_URL } from '../../utils/globalVariables';
+import styled from 'styled-components';
+
+const Container = styled.div`
+    margin: 20px;
+`;
+
+const SearchContainer = styled.div`
+    display: flex;
+    margin-bottom: 20px;
+    width: 200px;
+    margin-left: auto;
+`;
+
+const SearchInput = styled.input`
+    padding: 6px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+`;
+
+const ItemsContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+`;
+
+const ItemCard = styled.div`
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+`;
+
+const ItemTitle = styled.h4`
+    margin-bottom: 5px;
+`;
+
+const ItemDetail = styled.p`
+    margin: 0;
+`;
+
+const ActionButtons = styled.div`
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+`;
+
+const ActionButton = styled.button`
+    padding: 6px 12px;
+    font-size: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: ${(props) => (props.primary ? '#f44336' : '#4CAF50')}; /* Switched primary and secondary colors */
+    color: white;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+
+    &:hover {
+        background-color: ${(props) => (props.primary ? '#d32f2f' : '#388E3C')}; /* Adjusted hover colors accordingly */
+    }
+`;
 
 const MyItems = ({ update, setUpdate, setItem }) => {
     const [items, setItems] = useState([]);
@@ -7,23 +72,7 @@ const MyItems = ({ update, setUpdate, setItem }) => {
     const [filteredItems, setFilteredItems] = useState([]);
 
     useEffect(() => {
-        fetch(`${PRODUCTION_API_BASE_URL}/items/personal/` + localStorage.getItem('email'), {
-            headers: {
-                'Authorization': `Bearer ` + localStorage.getItem('token'),
-                'Content-Type': 'application/json',
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (Array.isArray(data)) {
-                    setItems(data);
-                    setFilteredItems(data);
-                } else {
-                    setItems([]);
-                    setFilteredItems([]);
-                }
-            })
-            .catch(error => console.error('Error fetching items:', error));
+        fetchItems();
     }, [update]);
 
     useEffect(() => {
@@ -33,6 +82,27 @@ const MyItems = ({ update, setUpdate, setItem }) => {
         );
         setFilteredItems(filtered);
     }, [searchQuery, items]);
+
+    const fetchItems = () => {
+        fetch(`${PRODUCTION_API_BASE_URL}/items/personal/` + localStorage.getItem('email'), {
+            headers: {
+                'Authorization': `Bearer ` + localStorage.getItem('token'),
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    const sortedItems = data.sort((a, b) => a.id - b.id); // Sort items by ID
+                    setItems(sortedItems);
+                    setFilteredItems(sortedItems);
+                } else {
+                    setItems([]);
+                    setFilteredItems([]);
+                }
+            })
+            .catch(error => console.error('Error fetching items:', error));
+    };
 
     const handleDelete = (event) => {
         fetch(`${PRODUCTION_API_BASE_URL}/items/` + localStorage.getItem('email'), {
@@ -54,54 +124,40 @@ const MyItems = ({ update, setUpdate, setItem }) => {
     };
 
     return (
-        <>
-            <input
-                type="text"
-                placeholder="Search items"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                        <th>Fullname</th>
-                        <th>Phone number</th>
-                        <th>Address</th>
-                        <th>Zipcode</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filteredItems.length > 0 ? (
-                        filteredItems.map((item) => (
-                            <tr key={item.id}>
-                                <td>{item.id}</td>
-                                <td>{item.title}</td>
-                                <td>{item.description}</td>
-                                <td>{item.price}</td>
-                                <td>{item.status ? "For sale" : "Sold"}</td>
-                                <td>{item.fullName}</td>
-                                <td>{item.phoneNr}</td>
-                                <td>{item.address}</td>
-                                <td>{item.postalCode}</td>
-                                <td><button onClick={() => handleEdit(item)}>Edit</button></td>
-                                <td><button id={item.id} onClick={handleDelete}>Delete</button></td>
-                            </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan="11">No items found.</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
-        </>
+        <Container>
+            <SearchContainer>
+                <SearchInput
+                    type="text"
+                    placeholder="Search items"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+            </SearchContainer>
+
+            <ItemsContainer>
+                {filteredItems.length > 0 ? (
+                    filteredItems.map((item) => (
+                        <ItemCard key={item.id}>
+                            <ItemTitle>{item.title}</ItemTitle>
+                            <ItemDetail>ID: {item.id}</ItemDetail>
+                            <ItemDetail>Description: {item.description}</ItemDetail>
+                            <ItemDetail>Price: {item.price}</ItemDetail>
+                            <ItemDetail>Status: {item.status ? "For sale" : "Sold"}</ItemDetail>
+                            <ItemDetail>Full Name: {item.fullName}</ItemDetail>
+                            <ItemDetail>Phone Number: {item.phoneNr}</ItemDetail>
+                            <ItemDetail>Address: {item.address}</ItemDetail>
+                            <ItemDetail>Zip Code: {item.postalCode}</ItemDetail>
+                            <ActionButtons>
+                                <ActionButton onClick={() => handleEdit(item)}>Edit</ActionButton>
+                                <ActionButton primary id={item.id} onClick={handleDelete}>Delete</ActionButton>
+                            </ActionButtons>
+                        </ItemCard>
+                    ))
+                ) : (
+                    <p>No items found.</p>
+                )}
+            </ItemsContainer>
+        </Container>
     );
 };
 
