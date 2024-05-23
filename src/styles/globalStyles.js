@@ -41,7 +41,6 @@ const GlobalStyles = createGlobalStyle`
     }
 
     ul {
-        background-color: black;
         list-style-type: none;
         width: 100vw;
         padding: 0;

@@ -42,7 +42,7 @@ const WelcomeMessage = styled.h1`
 `;
 
 const Gif = styled.img`
-    width: 200px;
+    width: 300px;
     height: auto;
     margin-bottom: 40px;
 `;
