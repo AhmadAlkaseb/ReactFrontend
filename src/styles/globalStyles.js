@@ -29,7 +29,6 @@ const GlobalStyles = createGlobalStyle`
     body {
         background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
         font-family: 'Roboto', 'sans-serif'; //hvis ikke robotic virker så tager den sans-serif
-        display: flex;
         justify-content: center;
         align-items: center; /* Tilføjet for at centrere indholdet både vertikalt og horisontalt */
     }

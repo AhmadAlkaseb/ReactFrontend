@@ -6,7 +6,7 @@ const HomeContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 88vh;
+    height: 73vh;
     color: #333;
     text-align: center;
     padding: 20px;
@@ -42,7 +42,7 @@ const WelcomeMessage = styled.h1`
 `;
 
 const Gif = styled.img`
-    width: 300px;
+    width: 200px;
     height: auto;
     margin-bottom: 40px;
 `;
