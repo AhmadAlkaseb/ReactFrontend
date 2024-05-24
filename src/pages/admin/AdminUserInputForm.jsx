@@ -42,6 +42,7 @@ const AdminUserInputForm = ({ updateUser, setUpdateUser, user, setUser }) => {
 
     return (
         <>
+            {user.email && (
             <form onSubmit={handleSubmit}>
                 <h2>User Info</h2>
                 
@@ -71,6 +72,7 @@ const AdminUserInputForm = ({ updateUser, setUpdateUser, user, setUser }) => {
                     <button type='submit'>Save</button>
                 </div>
             </form>
+            )}
         </>
     );
 };
