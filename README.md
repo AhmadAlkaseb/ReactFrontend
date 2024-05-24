@@ -32,7 +32,7 @@ Brugere kan oprette sig og logge på hjemmesiden. Hver bruger har mulighed for a
 - [ ] Callbacks
 - [X] Authentication and Authorization (Login/Logout/Register/JWT handling)
 - [ ] Error handling (Show error messages from the backend)
-- [ ] Loading indicators
+- [X] Loading indicators
 - [X] Use of a CSS framework (styled-components, react-icons etc.)
 - [X] All CRUD operations
 
