@@ -22,13 +22,13 @@ Brugere kan oprette sig og logge på hjemmesiden. Hver bruger har mulighed for a
 ### Krav til hjemmesiden
 
 - [X] Components
-- [ ] A facade for data fetching etc
+- [X] A facade for data fetching etc
 - [X] React Router
 - [X] Hooks: useState, useEffect, useParams
 - [ ] Props
 - [ ] Conditional Rendering
 - [X] Lifting state
-- [ ] Controlled input forms
+- [X] Controlled input forms
 - [ ] Callbacks
 - [X] Authentication and Authorization (Login/Logout/Register/JWT handling)
 - [ ] Error handling (Show error messages from the backend)
