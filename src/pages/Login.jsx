@@ -74,7 +74,8 @@ const RegisterLink = styled(NavLink)`
     }
 `;
 
-export function Login({ setIsAuthenticated }) {
+// eslint-disable-next-line react/prop-types
+export function Login({ setIsAuthenticated, setRole}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -108,6 +109,7 @@ export function Login({ setIsAuthenticated }) {
                 localStorage.setItem('roles', JSON.stringify(responseData.roles));
                 localStorage.setItem('isAuthenticated', 'true');
                 setIsAuthenticated(true);
+                setRole(localStorage.getItem('roles'));
                 navigate('/home');
             } else {
                 const errorData = await response.json();

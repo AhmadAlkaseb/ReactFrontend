@@ -1,10 +1,10 @@
 import React from 'react'
 import MainNav from './MainNav'
 
-const Header = () => {
+const Header = ({role}) => {
   return (
     <>
-      <MainNav/>
+      <MainNav role={role}/>
     </>
   )
 }

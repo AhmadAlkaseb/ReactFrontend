@@ -11,27 +11,29 @@ import ItemsForSale from './pages/ItemsForSale';
 import SetItemForSale from './pages/SetItemForSale';
 import MyItemsPage from './pages/MyListedItems/MyItemsPage';
 import Item from './pages/Item';
+import Administration from './pages/Administration';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return localStorage.getItem('token') ? true : false;
   });
+  const [role, setRole] = useState("");
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} setRole={setRole} />} />
         <Route path="/register" element={<Register setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="*" element={<PageNotFound />} />
-        <Route element={<AppLayout />}>
+        <Route element={<AppLayout role={role}/>}>
           <Route path="/home" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Home /></ProtectedRoute>} />
           <Route path="/itemsforsale" element={<ProtectedRoute isAuthenticated={isAuthenticated}><ItemsForSale /></ProtectedRoute>} />
           <Route path="/setitemforsale" element={<ProtectedRoute isAuthenticated={isAuthenticated}><SetItemForSale /></ProtectedRoute>} />
           <Route path="/item/:itemid" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Item /></ProtectedRoute>} />
           <Route path="/mylisteditems" element={<ProtectedRoute isAuthenticated={isAuthenticated}><MyItemsPage /></ProtectedRoute>} />
-
           <Route path="/logout" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Loguot /></ProtectedRoute>} />
+          <Route path="/admin" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Administration /></ProtectedRoute>}/>
         </Route>
       </Routes>
     </BrowserRouter>

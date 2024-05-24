@@ -93,7 +93,7 @@ const Nav = styled.nav`
     }
   }
 
-  .burger {
+  burger {
     display: none;
     cursor: pointer;
     z-index: 2;
@@ -116,7 +116,7 @@ const Nav = styled.nav`
   }
 `;
 
-const MainNav = () => {
+const MainNav = ({role}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -126,6 +126,11 @@ const MainNav = () => {
   const closeMenu = () => {
     setIsOpen(false);
   };
+
+  const isAdmin = role && role.includes('admin');
+  console.log(isAdmin);
+  console.log(role);
+
 
   return (
     <Nav isOpen={isOpen}>
@@ -140,6 +145,7 @@ const MainNav = () => {
         <li><NavLink to="/home" onClick={closeMenu}>Home</NavLink></li>
         <li><NavLink to="/itemsforsale" onClick={closeMenu}>Shop deals</NavLink></li>
         <li><NavLink to="/logout" onClick={closeMenu}>Logout</NavLink></li>
+        {isAdmin && <li><NavLink to="/admin" onClick={closeMenu}>Administration</NavLink></li>}
       </ul>
     </Nav>
   );
