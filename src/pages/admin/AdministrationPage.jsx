@@ -6,7 +6,7 @@ const AdministrationPage = () => {
     const [updateUser, setUpdateUser] = useState(false);
     const [user, setUser] = useState({
         email: '',
-        role: ''
+        roleAsStrings: ''
     });
 
     return (
