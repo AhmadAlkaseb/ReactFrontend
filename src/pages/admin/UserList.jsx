@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import React, {useEffect, useState} from "react";
-import {LOCAL_API_BASE_URL, PRODUCTION_API_BASE_URL} from "../../utils/globalVariables.js";
+import {useEffect, useState} from "react";
+import {PRODUCTION_API_BASE_URL} from "../../utils/globalVariables.js";
 
 
 const Container = styled.div`
@@ -45,7 +45,7 @@ const UserList = ({setUser, updateUser, setUpdateUser}) => {
 
     const handleDelete = (event) => {
         // console.log(user)
-        fetch(`${LOCAL_API_BASE_URL}/auth/users/`, {
+        fetch(`${PRODUCTION_API_BASE_URL}/auth/users/`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ` + localStorage.getItem('token'),
