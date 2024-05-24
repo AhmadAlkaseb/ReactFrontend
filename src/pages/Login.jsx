@@ -9,6 +9,7 @@ const FormContainer = styled.div`
     align-items: center;
     justify-content: center;
     height: 95vh;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
 `;
 
 const Form = styled.form`
@@ -74,6 +75,20 @@ const RegisterLink = styled(NavLink)`
     }
 `;
 
+const Headline = styled.h1`
+    margin-bottom: 20px;
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+`;
+
+const SubHeadline = styled.h2`
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #3a4046;
+    text-align: center;
+`;
+
 export function Login({ setIsAuthenticated }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -120,6 +135,8 @@ export function Login({ setIsAuthenticated }) {
 
     return (
         <FormContainer>
+            <Headline>Welcome to LAHY</Headline>
+            <SubHeadline>Give something used a new life or find your next treasure today!</SubHeadline>
             <Form onSubmit={handleSubmit}>
                 <FormField>
                     <Label htmlFor="email">Email:</Label>

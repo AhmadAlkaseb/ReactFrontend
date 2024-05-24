@@ -26,7 +26,7 @@ export default function Footer() {
       </ContactInfo>
       <RightsInfo>
         <p>All rights reserved by LAHY.</p>
-        <p>&copy; {new Date().getFullYear()} LAHY. All Rights Reserved.</p>
+        <p>&copy; {new Date().getFullYear()} LAHY.</p>
       </RightsInfo>
     </FooterContainer>
   );
