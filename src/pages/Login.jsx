@@ -89,10 +89,26 @@ const SubHeadline = styled.h2`
     text-align: center;
 `;
 
+const LoadingContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+`;
+
+const LoadingMessage = styled.p`
+    font-size: 1.5rem;
+    color: #3a4046;
+    margin-top: 20px;
+`;
+
 export function Login({ setIsAuthenticated }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -106,6 +122,7 @@ export function Login({ setIsAuthenticated }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
 
         try {
             const response = await fetch(`${PRODUCTION_API_BASE_URL}/auth/login`, {
@@ -123,15 +140,30 @@ export function Login({ setIsAuthenticated }) {
                 localStorage.setItem('roles', JSON.stringify(responseData.roles));
                 localStorage.setItem('isAuthenticated', 'true');
                 setIsAuthenticated(true);
-                navigate('/home');
+
+                setTimeout(() => {
+                    setLoading(false);
+                    navigate('/home');
+                }, 2000);
             } else {
                 const errorData = await response.json();
                 setError(errorData.error || 'Login failed');
+                setLoading(false);
             }
         } catch (error) {
             setError('Error during login. Please try again later.');
+            setLoading(false);
         }
     };
+
+    if (loading) {
+        return (
+            <LoadingContainer>
+                <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." />
+                <LoadingMessage>Logging in, please wait...</LoadingMessage>
+            </LoadingContainer>
+        );
+    }
 
     return (
         <FormContainer>
