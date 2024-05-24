@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import React, {useEffect, useState} from "react";
-import {PRODUCTION_API_BASE_URL} from "../utils/globalVariables.js";
+import {useEffect, useState} from "react";
+import {PRODUCTION_API_BASE_URL} from "../../utils/globalVariables.js";
 
 
 const Container = styled.div`
@@ -11,7 +11,7 @@ const Container = styled.div`
     height: 75vh;
 `;
 
-const Administration = () => {
+const UserList = () => {
     const [users, setUsers] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -71,4 +71,4 @@ const Administration = () => {
     );
 };
 
-export default Administration
+export default UserList
