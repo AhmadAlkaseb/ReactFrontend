@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PRODUCTION_API_BASE_URL } from '../utils/globalVariables';
 import styled from 'styled-components';
@@ -9,6 +9,7 @@ const FormContainer = styled.div`
     align-items: center;
     justify-content: center;
     height: 95vh;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
 `;
 
 const Form = styled.form`
@@ -84,11 +85,41 @@ const BackButton = styled.button`
     }
 `;
 
+const Headline = styled.h1`
+    margin-bottom: 20px;
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+`;
+
+const SubHeadline = styled.h2`
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #3a4046;
+    text-align: center;
+`;
+
+const LoadingContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+`;
+
+const LoadingMessage = styled.p`
+    font-size: 1.5rem;
+    color: #3a4046;
+    margin-top: 20px;
+`;
+
 export function Register({ setIsAuthenticated }) {
     const [email, setEmail] = useState('');
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -106,9 +137,11 @@ export function Register({ setIsAuthenticated }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
 
         if (password1 !== password2) {
             setError('Passwords do not match.');
+            setLoading(false);
             return;
         }
 
@@ -128,13 +161,19 @@ export function Register({ setIsAuthenticated }) {
                 localStorage.setItem('roles', JSON.stringify(responseData.roles));
                 localStorage.setItem('isAuthenticated', 'true');
                 setIsAuthenticated(true);
-                navigate('/home');
+
+                setTimeout(() => {
+                    setLoading(false);
+                    navigate('/home');
+                }, 2000);
             } else {
                 const errorData = await response.json();
                 setError(errorData.error || 'Email is already registered.');
+                setLoading(false);
             }
         } catch (error) {
             setError('Error during registration. Please try again later.');
+            setLoading(false);
         }
     };
 
@@ -142,8 +181,19 @@ export function Register({ setIsAuthenticated }) {
         navigate(-1);
     };
 
+    if (loading) {
+        return (
+            <LoadingContainer>
+                <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." />
+                <LoadingMessage>Registering, please wait...</LoadingMessage>
+            </LoadingContainer>
+        );
+    }
+
     return (
         <FormContainer>
+            <Headline>Welcome to LAHY</Headline>
+            <SubHeadline>Give something used a new life or find your next treasure today!</SubHeadline>
             <Form onSubmit={handleSubmit}>
                 <FormField>
                     <Label htmlFor="email">Email:</Label>
