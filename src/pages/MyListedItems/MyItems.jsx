@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PRODUCTION_API_BASE_URL } from '../../utils/globalVariables';
 import styled from 'styled-components';
 

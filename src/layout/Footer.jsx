@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const FooterContainer = styled.footer`
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 40px;
 `;
 
 const ContactInfo = styled.div`

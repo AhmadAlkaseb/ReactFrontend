@@ -2,7 +2,9 @@ import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
 import { useState } from "react";
 
-const Nav = styled.nav`
+const Nav = styled.nav.attrs(props => ({
+  className: props.isOpen ? 'open' : ''
+}))`
   background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); /* Gradient background */
   position: relative;
   height: 60px;
@@ -33,7 +35,7 @@ const Nav = styled.nav`
       align-items: center;
       background: rgba(0, 0, 0, 0.9);
       top: 60px;
-      left: ${props => (props.isOpen ? '0' : '-100%')};
+      left: ${props => (props.className === 'open' ? '0' : '-100%')};
       width: 100%;
       height: calc(100vh - 60px);
       transition: left 0.3s ease;
@@ -116,7 +118,7 @@ const Nav = styled.nav`
   }
 `;
 
-const MainNav = () => {
+const MainNav = ({ role }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -127,21 +129,26 @@ const MainNav = () => {
     setIsOpen(false);
   };
 
+  const isAdmin = role && role.includes('admin');
+  console.log(isAdmin);
+  console.log(role);
+
   return (
-    <Nav isOpen={isOpen}>
-      <div className="burger" onClick={toggleMenu}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <ul>
-        <li><NavLink to="/setitemforsale" onClick={closeMenu}>Sell item</NavLink></li>
-        <li><NavLink to="/mylisteditems" onClick={closeMenu}>My items</NavLink></li>
-        <li><NavLink to="/home" onClick={closeMenu}>Home</NavLink></li>
-        <li><NavLink to="/itemsforsale" onClick={closeMenu}>Shop deals</NavLink></li>
-        <li><NavLink to="/logout" onClick={closeMenu}>Logout</NavLink></li>
-      </ul>
-    </Nav>
+      <Nav isOpen={isOpen}>
+        <div className="burger" onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul>
+          <li><NavLink to="/setitemforsale" onClick={closeMenu}>Sell item</NavLink></li>
+          <li><NavLink to="/mylisteditems" onClick={closeMenu}>My items</NavLink></li>
+          <li><NavLink to="/home" onClick={closeMenu}>Home</NavLink></li>
+          <li><NavLink to="/itemsforsale" onClick={closeMenu}>Shop deals</NavLink></li>
+          <li><NavLink to="/logout" onClick={closeMenu}>Logout</NavLink></li>
+          {isAdmin && <li><NavLink to="/admin" onClick={closeMenu}>Administration</NavLink></li>}
+        </ul>
+      </Nav>
   );
 };
 

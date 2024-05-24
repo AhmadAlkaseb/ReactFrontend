@@ -18,11 +18,6 @@ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
  }
 
 
- div {
-  margin-bottom: 20px;
- }
-
-
  label {
   display: block;
   font-size: 16px;

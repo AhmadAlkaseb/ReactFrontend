@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { PRODUCTION_API_BASE_URL } from '../utils/globalVariables';
@@ -75,6 +75,8 @@ const RegisterLink = styled(NavLink)`
     }
 `;
 
+
+
 const Headline = styled.h1`
     margin-bottom: 20px;
     font-size: 3rem;
@@ -104,7 +106,7 @@ const LoadingMessage = styled.p`
     margin-top: 20px;
 `;
 
-export function Login({ setIsAuthenticated }) {
+export function Login({ setIsAuthenticated, setRole}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -140,7 +142,8 @@ export function Login({ setIsAuthenticated }) {
                 localStorage.setItem('roles', JSON.stringify(responseData.roles));
                 localStorage.setItem('isAuthenticated', 'true');
                 setIsAuthenticated(true);
-
+                setRole(localStorage.getItem('roles'));
+                navigate('/home');
                 setTimeout(() => {
                     setLoading(false);
                     navigate('/home');
