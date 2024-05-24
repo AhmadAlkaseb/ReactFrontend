@@ -21,20 +21,20 @@ Brugere kan oprette sig og logge på hjemmesiden. Hver bruger har mulighed for a
 
 ### Krav til hjemmesiden
 
-- [ ] Components
+- [X] Components
 - [ ] A facade for data fetching etc
-- [ ] React Router
-- [ ] Hooks: useState, useEffect, useParams
+- [X] React Router
+- [X] Hooks: useState, useEffect, useParams
 - [ ] Props
 - [ ] Conditional Rendering
-- [ ] Lifting state
+- [X] Lifting state
 - [ ] Controlled input forms
 - [ ] Callbacks
-- [ ] Authentication and Authorization (Login/Logout/Register/JWT handling)
+- [X] Authentication and Authorization (Login/Logout/Register/JWT handling)
 - [ ] Error handling (Show error messages from the backend)
 - [ ] Loading indicators
-- [ ] Use of a CSS framework (styled-components, react-icons etc.)
-- [ ] All CRUD operations
+- [X] Use of a CSS framework (styled-components, react-icons etc.)
+- [X] All CRUD operations
 
 ### Endpoints documentation (Tilføj her frontend-ruter)
 
