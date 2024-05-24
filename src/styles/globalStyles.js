@@ -26,10 +26,13 @@ const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    
+
     body {
         background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
         font-family: 'Roboto', 'sans-serif'; //hvis ikke robotic virker så tager den sans-serif
         justify-content: center;
+        height: 100vh;
         align-items: center; /* Tilføjet for at centrere indholdet både vertikalt og horisontalt */
     }
 
@@ -90,6 +93,7 @@ const GlobalStyles = createGlobalStyle`
 
         .burger {
             display: flex;
+            flex-direction: column;
             position: fixed;
             top: 15px;
             right: 20px;

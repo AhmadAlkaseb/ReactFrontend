@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { PRODUCTION_API_BASE_URL } from '../utils/globalVariables';
