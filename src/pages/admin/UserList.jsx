@@ -22,7 +22,7 @@ const UserList = ({setUser, updateUser, setUpdateUser}) => {
     const fetchUsers = () => {
         fetch(`${PRODUCTION_API_BASE_URL}/auth/users`, {
             headers: {
-                'Authorization': `Bearer ` + localStorage.getItem('token'),
+                'Authorization': `Bearer ` + sessionStorage.getItem('token'),
                 'Content-Type': 'application/json',
             }
         })
@@ -48,7 +48,7 @@ const UserList = ({setUser, updateUser, setUpdateUser}) => {
         fetch(`${PRODUCTION_API_BASE_URL}/auth/delete/`, {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ` + localStorage.getItem('token'),
+                'Authorization': `Bearer ` + sessionStorage.getItem('token'),
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(email)

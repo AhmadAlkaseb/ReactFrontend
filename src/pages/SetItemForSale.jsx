@@ -73,7 +73,7 @@ export default function SetItemForSale () {
     }
 
     // Henter emailen fra localStorage
-    const userEmail = localStorage.getItem('email');
+    const userEmail = sessionStorage.getItem('email');
 
     // Tilføjer emailen til formData, så jeg kan sende den med i body for at oprette et produkt
     const updatedFormData = { ...formData, user: {email: userEmail}};
@@ -82,7 +82,7 @@ export default function SetItemForSale () {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
       },
       body: JSON.stringify(updatedFormData)
     })

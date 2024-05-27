@@ -17,7 +17,7 @@ const AdminUserInputForm = ({ updateUser, setUpdateUser, user, setUser }) => {
         fetch(url, {
             method: 'PUT',
             headers: {
-                'Authorization': `Bearer ` + localStorage.getItem('token'),
+                'Authorization': `Bearer ` + sessionStorage.getItem('token'),
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({

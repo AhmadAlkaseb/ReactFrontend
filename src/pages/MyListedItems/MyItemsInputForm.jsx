@@ -91,13 +91,13 @@ const MyItemsInputForm = ({ update, setUpdate, item, setItem }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const email = localStorage.getItem('email');
+        const email = sessionStorage.getItem('email');
         const url = `${PRODUCTION_API_BASE_URL}/items/${email}`;
 
         fetch(url, {
             method: 'PUT',
             headers: {
-                'Authorization': `Bearer ` + localStorage.getItem('token'),
+                'Authorization': `Bearer ` + sessionStorage.getItem('token'),
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({

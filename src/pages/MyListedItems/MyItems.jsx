@@ -84,9 +84,9 @@ const MyItems = ({ update, setUpdate, setItem }) => {
     }, [searchQuery, items]);
 
     const fetchItems = () => {
-        fetch(`${PRODUCTION_API_BASE_URL}/items/personal/` + localStorage.getItem('email'), {
+        fetch(`${PRODUCTION_API_BASE_URL}/items/personal/` + sessionStorage.getItem('email'), {
             headers: {
-                'Authorization': `Bearer ` + localStorage.getItem('token'),
+                'Authorization': `Bearer ` + sessionStorage.getItem('token'),
                 'Content-Type': 'application/json',
             }
         })
@@ -105,10 +105,10 @@ const MyItems = ({ update, setUpdate, setItem }) => {
     };
 
     const handleDelete = (event) => {
-        fetch(`${PRODUCTION_API_BASE_URL}/items/` + localStorage.getItem('email'), {
+        fetch(`${PRODUCTION_API_BASE_URL}/items/` + sessionStorage.getItem('email'), {
             method: 'DELETE',
             headers: {
-                'Authorization': `Bearer ` + localStorage.getItem('token'),
+                'Authorization': `Bearer ` + sessionStorage.getItem('token'),
                 'Content-Type': 'application/json',
             },
             body: event.target.id
