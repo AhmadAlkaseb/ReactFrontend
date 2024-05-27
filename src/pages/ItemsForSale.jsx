@@ -1,6 +1,51 @@
 import { useEffect, useState } from 'react'
 import { getAllItemsForSale } from '../services/apiFacade';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+  const Container = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 20px;
+  `;
+
+  const ContainerChild = styled.div`
+    flex-grow: 1;
+    flex-basis: 300px;
+    padding: 30px 15px;
+    text-align: center;
+    background-color: #e3e3e3;
+    border-radius: 10px;
+  `;
+
+  const ItemPhoto = styled.img`
+    width: 100%;
+    margin-bottom: 10px;
+  `;
+
+  const Title = styled.h2`
+    font-size: 28px;
+    margin-bottom: 10px;
+  `;
+
+  const Desc = styled.p`
+    font-size: 20px;
+    margin-bottom: 10px;
+  `;
+
+  const Price = styled.p`
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  `;
+
+  const StyledLink = styled(Link)`
+    font-size: 20px;
+    background-color: blue;
+    color: white;
+  `;
 
 export default function ItemsForSale() {
   const [itemsForSale, setItemsForSale] = useState([]);
@@ -17,17 +62,17 @@ export default function ItemsForSale() {
   return (
     <>
       <h1>Items for sale</h1>
+      <Container>
       {itemsForSale.map((item) => (
-        <div key={item.id}>
-          <img src="/item-for-sale.jpg" alt="Item for sale" />
-          <h2>{item.title}</h2>
-          <p>{item.description}</p>
-          <p>{item.price}</p>
-          <button>
-            <Link to={`/item/${item.id}`}>See item</Link>
-          </button>
-        </div>
+        <ContainerChild key={item.id}>
+          <ItemPhoto src="/item-for-sale.jpg" alt="Item for sale" />
+          <Title>{item.title}</Title>
+          <Desc>{item.description}</Desc>
+          <Price>${item.price}</Price>
+          <StyledLink to={`/item/${item.id}`}>See item</StyledLink>
+        </ContainerChild>    
       ))}
+      </Container>
     </>
   )
 }
