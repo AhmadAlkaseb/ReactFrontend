@@ -125,7 +125,7 @@ export function Login({ setIsAuthenticated, setRole}) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
-
+    
         try {
             const response = await fetch(`${PRODUCTION_API_BASE_URL}/auth/login`, {
                 method: 'POST',
@@ -134,15 +134,15 @@ export function Login({ setIsAuthenticated, setRole}) {
                 },
                 body: JSON.stringify({ email, password }),
             });
-
+    
             if (response.ok) {
                 const responseData = await response.json();
-                localStorage.setItem('token', responseData.token);
-                localStorage.setItem('email', responseData.username);
-                localStorage.setItem('roles', JSON.stringify(responseData.roles));
-                localStorage.setItem('isAuthenticated', 'true');
+                sessionStorage.setItem('token', responseData.token);
+                sessionStorage.setItem('email', responseData.username);
+                sessionStorage.setItem('roles', JSON.stringify(responseData.roles));
+                sessionStorage.setItem('isAuthenticated', 'true');
                 setIsAuthenticated(true);
-                setRole(localStorage.getItem('roles'));
+                setRole(JSON.parse(sessionStorage.getItem('roles')));
                 navigate('/home');
                 setTimeout(() => {
                     setLoading(false);

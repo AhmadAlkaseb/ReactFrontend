@@ -47,7 +47,7 @@ const Gif = styled.img`
 `;
 
 const Home = () => {
-    const email = localStorage.getItem('email');
+    const email = sessionStorage.getItem('email');
     return (
         <HomeContainer>
             <Gif src="https://media.giphy.com/media/26xBwdIuRJiAIqHwA/giphy.gif" alt="Welcome Gif" />
