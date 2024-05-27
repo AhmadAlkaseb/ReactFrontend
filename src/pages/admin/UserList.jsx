@@ -43,18 +43,16 @@ const UserList = ({setUser, updateUser, setUpdateUser}) => {
         user.email.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    const handleDelete = (event) => {
-        // console.log(user)
-        fetch(`${PRODUCTION_API_BASE_URL}/auth/users/`, {
+    const handleDelete = (email) => {
+        console.log(email)
+        fetch(`${PRODUCTION_API_BASE_URL}/auth/delete/`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ` + localStorage.getItem('token'),
                 'Content-Type': 'application/json',
             },
-            body: event.target.id
-            // body: JSON.stringify({ email: user.email })
+            body: JSON.stringify(email)
         }).then(() => {
-            // console.log(user.email)
             setUpdateUser(!updateUser);
         }).catch(error => {
             console.error('Error deleting item:', error);
