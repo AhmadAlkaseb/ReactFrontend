@@ -1,4 +1,4 @@
-import { PRODUCTION_API_BASE_URL } from '../utils/globalVariables'
+import { PRODUCTION_API_BASE_URL, LOCAL_API_BASE_URL } from '../utils/globalVariables'
 
 export const getAllItemsForSale = async () => {
     try {
