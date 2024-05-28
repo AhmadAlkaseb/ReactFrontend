@@ -1,24 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-    :root {
-        //grey colors
-        --color-grey-50: #f9fafb;
-        --color-grey-100: #f1f5f9;
-        --color-grey-200: #e2e8f0;
-        --color-grey-300: #cbd5e1;
-        --color-grey-400: #94a3b8;
-        --color-grey-500: #64748b;
-        --color-grey-600: #475569;
-        --color-grey-700: #334155;
-
-        //purple colors
-        --color-purple-50: #faf5ff;
-        --color-purple-100: #f3e8ff;
-        --color-purple-200: #e9d5ff;
-        --color-purple-300: #d8b4fe;
-        --color-purple-400: #c084fc;
-    }
+    
 
     * {
         margin: 0;
