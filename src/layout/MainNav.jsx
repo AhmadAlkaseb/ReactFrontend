@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 const Nav = styled.nav.attrs(props => ({
-  className: props.isOpen ? 'open' : ''
+  className: props.$isOpen ? 'open' : ''
 }))`
   background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); /* Gradient background */
   position: relative;
@@ -130,11 +130,9 @@ const MainNav = ({ role }) => {
   };
 
   const isAdmin = role && role.includes('admin');
-  console.log(isAdmin);
-  console.log(role);
 
   return (
-      <Nav isOpen={isOpen}>
+      <Nav $isOpen={isOpen}>
         <div className="burger" onClick={toggleMenu}>
           <span></span>
           <span></span>
