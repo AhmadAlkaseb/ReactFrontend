@@ -56,13 +56,13 @@ const ActionButton = styled.button`
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    background-color: ${(props) => (props.primary ? '#f44336' : '#4CAF50')}; /* Switched primary and secondary colors */
+    background-color: ${(props) => (props.$primary ? '#f44336' : '#4CAF50')}; /* Switched primary and secondary colors */
     color: white;
     transition: background-color 0.3s ease;
     margin-right: 5px;
 
     &:hover {
-        background-color: ${(props) => (props.primary ? '#d32f2f' : '#388E3C')}; /* Adjusted hover colors accordingly */
+        background-color: ${(props) => (props.$primary ? '#d32f2f' : '#388E3C')}; /* Adjusted hover colors accordingly */
     }
 `;
 
@@ -149,7 +149,7 @@ const MyItems = ({ update, setUpdate, setItem }) => {
                             <ItemDetail>Zip Code: {item.postalCode}</ItemDetail>
                             <ActionButtons>
                                 <ActionButton onClick={() => handleEdit(item)}>Edit</ActionButton>
-                                <ActionButton primary id={item.id} onClick={handleDelete}>Delete</ActionButton>
+                                <ActionButton $primary id={item.id} onClick={handleDelete}>Delete</ActionButton>
                             </ActionButtons>
                         </ItemCard>
                     ))
