@@ -198,7 +198,7 @@ export function Register({ setIsAuthenticated }) {
                 <FormField>
                     <Label htmlFor="email">Email:</Label>
                     <Input
-                        type="text"
+                        type="email"
                         id="email"
                         value={email}
                         onChange={handleEmailChange}

@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import UserList from "./UserList.jsx";
 import AdminUserInputForm from "./AdminUserInputForm.jsx";
+
+const PageHeader = styled.h1`
+    padding-top: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 100px;
+    color: #333;
+`;
 
 const AdministrationPage = () => {
     const [updateUser, setUpdateUser] = useState(false);
@@ -10,7 +19,8 @@ const AdministrationPage = () => {
     });
 
     return (
-        <>     
+        <>
+            <PageHeader>Administration</PageHeader>
             <AdminUserInputForm 
                 updateUser={updateUser} 
                 setUpdateUser={setUpdateUser} 
@@ -27,3 +37,4 @@ const AdministrationPage = () => {
 };
 
 export default AdministrationPage;
+
