@@ -25,11 +25,11 @@ Brugere kan oprette sig og logge på hjemmesiden. Hver bruger har mulighed for a
 - [X] A facade for data fetching etc
 - [X] React Router
 - [X] Hooks: useState, useEffect, useParams
-- [ ] Props
-- [ ] Conditional Rendering
+- [X] Props
+- [x] Conditional Rendering
 - [X] Lifting state
 - [X] Controlled input forms
-- [ ] Callbacks
+- [X] Callbacks
 - [X] Authentication and Authorization (Login/Logout/Register/JWT handling)
 - [ ] Error handling (Show error messages from the backend)
 - [X] Loading indicators
