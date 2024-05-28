@@ -31,12 +31,10 @@ Brugere kan oprette sig og logge på hjemmesiden. Hver bruger har mulighed for a
 - [X] Controlled input forms
 - [X] Callbacks
 - [X] Authentication and Authorization (Login/Logout/Register/JWT handling)
-- [ ] Error handling (Show error messages from the backend)
+- [X] Error handling (Show error messages from the backend)
 - [X] Loading indicators
 - [X] Use of a CSS framework (styled-components, react-icons etc.)
 - [X] All CRUD operations
-
-### Endpoints documentation (Tilføj her frontend-ruter)
 
 ### Links
 
