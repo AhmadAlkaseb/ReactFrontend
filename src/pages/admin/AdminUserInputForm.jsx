@@ -13,6 +13,7 @@ const AdminUserInputForm = ({ updateUser, setUpdateUser, user, setUser }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const url = `${PRODUCTION_API_BASE_URL}/auth/addroletouser`;
+        
 
         fetch(url, {
             method: 'PUT',
@@ -48,7 +49,7 @@ const AdminUserInputForm = ({ updateUser, setUpdateUser, user, setUser }) => {
                 
                 <label htmlFor='email'>Email</label>
                 <input 
-                    type='email' 
+                    type='text' 
                     id='email' 
                     value={user.email} 
                     placeholder='Enter email' 
