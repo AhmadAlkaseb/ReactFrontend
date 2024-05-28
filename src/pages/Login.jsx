@@ -75,8 +75,6 @@ const RegisterLink = styled(NavLink)`
     }
 `;
 
-
-
 const Headline = styled.h1`
     margin-bottom: 20px;
     font-size: 3rem;
@@ -106,7 +104,7 @@ const LoadingMessage = styled.p`
     margin-top: 20px;
 `;
 
-export function Login({ setIsAuthenticated, setRole}) {
+export function Login({ setIsAuthenticated, setRole }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -143,14 +141,11 @@ export function Login({ setIsAuthenticated, setRole}) {
                 sessionStorage.setItem('isAuthenticated', 'true');
                 setIsAuthenticated(true);
                 setRole(JSON.parse(sessionStorage.getItem('roles')));
+                setLoading(false);
                 navigate('/home');
-                setTimeout(() => {
-                    setLoading(false);
-                    navigate('/home');
-                }, 2000);
             } else {
                 const errorData = await response.json();
-                setError(errorData.error || 'Login failed');
+                setError(errorData.message);
                 setLoading(false);
             }
         } catch (error) {
