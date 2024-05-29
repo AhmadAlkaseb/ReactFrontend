@@ -78,12 +78,12 @@ const Button = styled.button`
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    background-color: ${(props) => (props.primary ? '#4CAF50' : '#f44336')};
+    background-color: ${({$primary}) => ($primary ? '#4CAF50' : '#f44336')};
     color: white;
     transition: background-color 0.3s ease;
 
     &:hover {
-        background-color: ${(props) => (props.primary ? '#388E3C' : '#d32f2f')};
+        background-color: ${({$primary}) => ($primary ? '#388E3C' : '#d32f2f')};
     }
 `;
 
@@ -155,7 +155,7 @@ const AdminUserInputForm = ({ updateUser, setUpdateUser, user, setUser }) => {
                     </Fieldset>
                     <ButtonContainer>
                         <Button type='button' onClick={handleCancel}>Cancel</Button>
-                        <Button primary type='submit'>Save</Button>
+                        <Button $primary type='submit'>Save</Button>
                     </ButtonContainer>
                 </FormContainer>
             )}
