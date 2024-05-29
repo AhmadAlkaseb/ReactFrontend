@@ -34,7 +34,7 @@ const Nav = styled.nav.attrs(props => ({
       justify-content: center;
       align-items: center;
       background: rgba(0, 0, 0, 0.9);
-      top: 60px;
+      top: 55px;
       left: ${props => (props.className === 'open' ? '0' : '-100%')};
       width: 100%;
       height: calc(100vh - 60px);
@@ -48,6 +48,7 @@ const Nav = styled.nav.attrs(props => ({
     text-align: center; /* Center text horizontally */
     margin: 0 10px; /* Adjusted margin */
     @media (max-width: 768px) {
+        flex: unset;
       width: 100%;
       margin: 10px 0;
     }
@@ -70,8 +71,8 @@ const Nav = styled.nav.attrs(props => ({
       content: '';
       position: absolute;
       top: -5px;
-      left: -5px;
-      right: -5px;
+      left: 5px;
+      right: 5px;
       bottom: -5px;
       background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
       z-index: -1;
@@ -143,8 +144,8 @@ const MainNav = ({ role }) => {
           <li><NavLink to="/mylisteditems" onClick={closeMenu}>My items</NavLink></li>
           <li><NavLink to="/home" onClick={closeMenu}>Home</NavLink></li>
           <li><NavLink to="/itemsforsale" onClick={closeMenu}>Shop deals</NavLink></li>
-          <li><NavLink to="/logout" onClick={closeMenu}>Logout</NavLink></li>
           {isAdmin && <li><NavLink to="/admin" onClick={closeMenu}>Administration</NavLink></li>}
+          <li><NavLink to="/logout" onClick={closeMenu}>Logout</NavLink></li>
         </ul>
       </Nav>
   );
