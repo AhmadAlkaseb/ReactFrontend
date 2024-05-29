@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { PRODUCTION_API_BASE_URL } from '../../utils/globalVariables.js';
+import {PRODUCTION_API_BASE_URL} from '../../utils/globalVariables.js';
 
 const Container = styled.div`
     display: flex;
@@ -59,10 +59,10 @@ const Button = styled.button`
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    background-color: ${(props) => {
-        if (props.primary) return '#4CAF50';
-        if (props.danger) return '#f44336';
-        if (props.edit) return '#4CAF50';
+    background-color: ${({ $primary, $danger, $edit }) => {
+        if ($primary) return '#4CAF50';
+        if ($danger) return '#f44336';
+        if ($edit) return '#4CAF50';
         return '#008CBA';
     }};
     color: white;
@@ -70,10 +70,10 @@ const Button = styled.button`
     margin: 0 5px;
 
     &:hover {
-        background-color: ${(props) => {
-            if (props.primary) return '#388E3C';
-            if (props.danger) return '#d32f2f';
-            if (props.edit) return '#388E3C';
+        background-color: ${({ $primary, $danger, $edit }) => {
+            if ($primary) return '#388E3C';
+            if ($danger) return '#d32f2f';
+            if ($edit) return '#388E3C';
             return '#007BB5';
         }};
     }
@@ -147,6 +147,23 @@ const UserList = ({ setUser, updateUser, setUpdateUser }) => {
         });
     };
 
+
+    const handleUnban = (email) => {
+        console.log(email)
+        fetch(`${PRODUCTION_API_BASE_URL}/auth/unbanuser/`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ` + sessionStorage.getItem('token'),
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(email)
+        }).then(() => {
+            setUpdateUser(!updateUser);
+        }).catch(error => {
+            console.error('Error unbanning user:', error);
+        });
+    };
+
     return (
         <Container>
             <SearchInput
@@ -160,24 +177,24 @@ const UserList = ({ setUser, updateUser, setUpdateUser }) => {
                     <Title>Users</Title>
                     <Table>
                         <thead>
-                            <tr>
-                                <TableHeader>Email</TableHeader>
-                                <TableHeader>Role</TableHeader>
-                                <TableHeader>Actions</TableHeader>
-                            </tr>
+                        <tr>
+                            <TableHeader>Email</TableHeader>
+                            <TableHeader>Role</TableHeader>
+                            <TableHeader>Actions</TableHeader>
+                        </tr>
                         </thead>
                         <tbody>
-                            {notBannedUsers.map((user) => (
-                                <tr key={user.email}>
-                                    <TableCell>{user.email}</TableCell>
-                                    <TableCell>{user.rolesAsStrings.join(' - ')}</TableCell>
-                                    <TableCell>
-                                        <Button edit onClick={() => handleEdit(user)}>Edit</Button>
-                                        <Button onClick={() => handleBan(user.email)}>Ban</Button>
-                                        <Button danger onClick={() => handleDelete(user.email)}>Delete</Button>
-                                    </TableCell>
-                                </tr>
-                            ))}
+                        {notBannedUsers.map((user) => (
+                            <tr key={user.email}>
+                                <TableCell>{user.email}</TableCell>
+                                <TableCell>{user.rolesAsStrings.join(' - ')}</TableCell>
+                                <TableCell>
+                                    <Button $edit onClick={() => handleEdit(user)}>Edit</Button>
+                                    <Button onClick={() => handleBan(user.email)}>Ban</Button>
+                                    <Button $danger onClick={() => handleDelete(user.email)}>Delete</Button>
+                                </TableCell>
+                            </tr>
+                        ))}
                         </tbody>
                     </Table>
                 </TableWrapper>
@@ -185,23 +202,24 @@ const UserList = ({ setUser, updateUser, setUpdateUser }) => {
                     <Title>Banned Users</Title>
                     <Table>
                         <thead>
-                            <tr>
-                                <TableHeader>Email</TableHeader>
-                                <TableHeader>Role</TableHeader>
-                                <TableHeader>Actions</TableHeader>
-                            </tr>
+                        <tr>
+                            <TableHeader>Email</TableHeader>
+                            <TableHeader>Role</TableHeader>
+                            <TableHeader>Actions</TableHeader>
+                        </tr>
                         </thead>
                         <tbody>
-                            {bannedUsers.map((user) => (
-                                <tr key={user.email}>
-                                    <TableCell>{user.email}</TableCell>
-                                    <TableCell>{user.rolesAsStrings.join(' - ')}</TableCell>
-                                    <TableCell>
-                                        <Button edit onClick={() => handleEdit(user)}>Edit</Button>
-                                        <Button danger onClick={() => handleDelete(user.email)}>Delete</Button>
-                                    </TableCell>
-                                </tr>
-                            ))}
+                        {bannedUsers.map((user) => (
+                            <tr key={user.email}>
+                                <TableCell>{user.email}</TableCell>
+                                <TableCell>{user.rolesAsStrings.join(' - ')}</TableCell>
+                                <TableCell>
+                                    <Button $edit onClick={() => handleEdit(user)}>Edit</Button>
+                                    <Button onClick={() => handleUnban(user.email)}>Unban</Button>
+                                    <Button $danger onClick={() => handleDelete(user.email)}>Delete</Button>
+                                </TableCell>
+                            </tr>
+                        ))}
                         </tbody>
                     </Table>
                 </TableWrapper>
