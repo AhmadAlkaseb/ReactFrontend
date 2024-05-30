@@ -47,6 +47,14 @@ import styled from 'styled-components';
     color: white;
   `;
 
+const PageHeader = styled.h1`
+padding-top: 50px;
+text-align: center;
+margin-bottom: 20px;
+font-size: 100px;
+color: #333;
+`;
+
 export default function ItemsForSale() {
   const [itemsForSale, setItemsForSale] = useState([]);
 
@@ -61,7 +69,7 @@ export default function ItemsForSale() {
 
   return (
     <>
-    <h1>Items for sale</h1>
+    <PageHeader>Items for sale</PageHeader>
     <Container>
       {itemsForSale && itemsForSale.map((item) => (
         item.status && (
