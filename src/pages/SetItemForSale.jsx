@@ -11,6 +11,14 @@ const Container = styled.div`
   align-items: center;
 `;
 
+const PageHeader = styled.h1`
+    padding-top: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 100px;
+    color: #333;
+`;
+
 
 export default function SetItemForSale () {
   const [formData, setFormData] = useState({
@@ -22,8 +30,7 @@ export default function SetItemForSale () {
     zipCode: '',
     phoneNumber: ''
   });
-  // const [tags, setTags] = useState([]);
-  // const [tagInput, setTagInput] = useState('');
+  
   const [errors, setErrors] = useState({});
   const [itemCreated, setItemCreated] = useState(false);
 
@@ -48,34 +55,19 @@ export default function SetItemForSale () {
     }
   };
 
-  // const handleTagInputChange = (e) => {
-  //   setTagInput(e.target.value);
-  // };
-  //
-  //   const handleAddTag = () => {
-  //       if (tagInput.trim() !== '') {
-  //           setTags((prevTags) => [...prevTags, tagInput.trim()]);
-  //       }
-  //       console.log(tags);
-  //       setTagInput('');
-  //   };
-  //
-  //   const handleTagDelete = (tagToDelete) => {
-  //       setTags((prevTags) => prevTags.filter(tag => tag !== tagToDelete));
-  //   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Check for errors before submission
     if (Object.keys(errors).length > 0) {
       console.error('Form has errors:', errors);
       return;
     }
 
-    // Henter emailen fra localStorage
+    
     const userEmail = sessionStorage.getItem('email');
 
-    // Tilføjer emailen til formData, så jeg kan sende den med i body for at oprette et produkt
+    
     const updatedFormData = { ...formData, user: {email: userEmail}};
 
     fetch(`${PRODUCTION_API_BASE_URL}/items`, {
@@ -89,7 +81,7 @@ export default function SetItemForSale () {
         .then(response => response.json())
         .then(data => {
           console.log('printing response:', data);
-          // Der skal lige tilføjes en tekst som fotæller at produktet er tilføjet.
+          
 
           setFormData({
                 title: '',
@@ -110,6 +102,7 @@ export default function SetItemForSale () {
 
   return (
       <Container>
+        <PageHeader>Sell items</PageHeader>
       <form onSubmit={handleSubmit}>
           <div>
               <label>
@@ -189,28 +182,10 @@ export default function SetItemForSale () {
                   {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
               </label>
           </div>
-          {/*<div>*/}
-          {/*    <label>*/}
-          {/*        Tags:*/}
-          {/*        <input*/}
-          {/*            type="text"*/}
-          {/*            value={tagInput}*/}
-          {/*            onChange={handleTagInputChange}*/}
-          {/*        />*/}
-          {/*        <button type="button" onClick={handleAddTag}>Add Tag</button>*/}
-          {/*    </label>*/}
-          {/*</div>*/}
-          {/*<div>*/}
-          {/*    {tags.map((tag, index) => (*/}
-          {/*        <div key={index}>*/}
-          {/*            {tag}*/}
-          {/*            <button type="button" onClick={() => handleTagDelete(tag)}>Remove</button>*/}
-          {/*        </div>*/}
-          {/*    ))}*/}
-          {/*</div>*/}
+          
           <button type="submit">Create Item</button>
       </form>
-          {itemCreated && <h1>Item successfully created</h1>}
+          {itemCreated && <h1>Item successfully uploaded</h1>}
       </Container>
   );
 }
