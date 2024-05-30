@@ -53,8 +53,8 @@ export default () => {
         <Desc>
           Name: {item.fullName} <br />
           Address: {item.address} <br />
-          Zip: {item.zipCode} <br />
-          Phone: {item.phoneNumber} <br />
+          Zip code: {item.postalCode} <br />
+          Private Phonenumber: {item.phoneNr} <br />
           Email: {item.userEmail}
         </Desc>
       </Container>
