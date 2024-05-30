@@ -61,18 +61,20 @@ export default function ItemsForSale() {
 
   return (
     <>
-      <h1>Items for sale</h1>
-      <Container>
-      {itemsForSale.map((item) => (
-        <ContainerChild key={item.id}>
-          <ItemPhoto src="/item-for-sale.jpg" alt="Item for sale" />
-          <Title>{item.title}</Title>
-          <Desc>{item.description}</Desc>
-          <Price>${item.price}</Price>
-          <StyledLink to={`/item/${item.id}`}>See item</StyledLink>
-        </ContainerChild>    
+    <h1>Items for sale</h1>
+    <Container>
+      {itemsForSale && itemsForSale.map((item) => (
+        item.status && (
+          <ContainerChild key={item.id}>
+            <ItemPhoto src="/item-for-sale.jpg" alt="Item for sale" />
+            <Title>{item.title}</Title>
+            <Desc>{item.description}</Desc>
+            <Price>${item.price}</Price>
+            <StyledLink to={`/item/${item.id}`}>See item</StyledLink>
+          </ContainerChild>
+        )
       ))}
-      </Container>
-    </>
+    </Container>
+  </>
   )
 }
