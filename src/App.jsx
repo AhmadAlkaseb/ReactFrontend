@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} setRole={setRole} />} />
-        <Route path="/register" element={<Register setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/register" element={<Register setIsAuthenticated={setIsAuthenticated} setRole={setRole} />} />
         <Route path="*" element={<PageNotFound />} />
         <Route element={<AppLayout role={role}/>}>
           <Route path="/home" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Home /></ProtectedRoute>} />

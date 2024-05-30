@@ -114,7 +114,7 @@ const LoadingMessage = styled.p`
     margin-top: 20px;
 `;
 
-export function Register({ setIsAuthenticated }) {
+export function Register({ setIsAuthenticated, setRole }) {
     const [email, setEmail] = useState('');
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
@@ -161,7 +161,7 @@ export function Register({ setIsAuthenticated }) {
                 sessionStorage.setItem('roles', JSON.stringify(responseData.roles));
                 sessionStorage.setItem('isAuthenticated', 'true');
                 setIsAuthenticated(true);
-
+                setRole(JSON.parse(sessionStorage.getItem('roles')));
                 setTimeout(() => {
                     setLoading(false);
                     navigate('/home');
