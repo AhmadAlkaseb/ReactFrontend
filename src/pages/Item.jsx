@@ -51,8 +51,8 @@ export default () => {
 
   return (
     <>
+    <PageHeader>{item.title}</PageHeader>
       <Container>
-        <PageHeader>{item.title}</PageHeader>
         <Price>Price: ${item.price}</Price>
         <ItemPhoto src="/item-for-sale.jpg" alt="Item for sale" />
         <h2>Item description:</h2>

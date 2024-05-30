@@ -101,8 +101,9 @@ export default function SetItemForSale () {
   };
 
   return (
+    <>
+    <PageHeader>Sell items</PageHeader>
       <Container>
-        <PageHeader>Sell items</PageHeader>
       <form onSubmit={handleSubmit}>
           <div>
               <label>
@@ -187,5 +188,6 @@ export default function SetItemForSale () {
       </form>
           {itemCreated && <h1>Item successfully uploaded</h1>}
       </Container>
+      </>
   );
 }
