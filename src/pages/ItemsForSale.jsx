@@ -47,13 +47,13 @@ import styled from 'styled-components';
     color: white;
   `;
 
-const PageHeader = styled.h1`
-padding-top: 50px;
-text-align: center;
-margin-bottom: 20px;
-font-size: 100px;
-color: #333;
-`;
+  const PageHeader = styled.h1`
+  padding-top: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 100px;
+  color: #333;
+  `;
 
 export default function ItemsForSale() {
   const [itemsForSale, setItemsForSale] = useState([]);

@@ -28,6 +28,14 @@ import styled from 'styled-components';
     text-align: center;
   `;
 
+  const PageHeader = styled.h1`
+    padding-top: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 100px;
+    color: #333;
+  `;
+
 export default () => {
   let params = useParams();
   const [item, setItem] = useState({});
@@ -44,7 +52,7 @@ export default () => {
   return (
     <>
       <Container>
-        <h1>{item.title}</h1>
+        <PageHeader>{item.title}</PageHeader>
         <Price>Price: ${item.price}</Price>
         <ItemPhoto src="/item-for-sale.jpg" alt="Item for sale" />
         <h2>Item description:</h2>
