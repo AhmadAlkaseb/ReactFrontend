@@ -116,7 +116,7 @@ const LoadingMessage = styled.p`
 
 export function Register({ setIsAuthenticated }) {
 
-    //improved
+        //improved
     const [formData, setFormData] = useState({
         email: '',
         password1: '',
@@ -147,10 +147,10 @@ export function Register({ setIsAuthenticated }) {
     // };
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value } = event.target; // Destrukturering af navn og værdi fra event.target
         setFormData((prevFormData) => ({
             ...prevFormData,
-            [name]: value
+            [name]: value  // Opdatering af formData state baseret på input name attributten
         }));
     };
 
@@ -220,7 +220,7 @@ export function Register({ setIsAuthenticated }) {
                     <Input
                         type="email"
                         id="email"
-                        name="email"
+                        name="email" // tilføfet i forbindelse med ny handleChnage. name bruges til at opdatere den korrekte værdi i formData
                         value={formData.email}
                         onChange={handleChange}
                         required
