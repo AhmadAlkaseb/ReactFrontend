@@ -1,21 +1,19 @@
 import { PRODUCTION_API_BASE_URL, LOCAL_API_BASE_URL } from '../utils/globalVariables'
 
-
+//med callback
 const fetchItems = async (url, callback) => {
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`Error fetching items from ${url}`);
-
         const data = await response.json();
-        callback(null, data); // konvention af bruge null for at inditere at der ikke er opstået fejl
+        callback(data);
     } catch (error) {
-        callback(error, null);
+        throw new Error(error.message);
     }
 };
 
-
 export const getAllItemsForSale = async (callback) => {
-        await fetchItems(`${LOCAL_API_BASE_URL}/items`, callback);
+    await fetchItems(`${LOCAL_API_BASE_URL}/items`, callback);
 };
 
 export const getItemById = async (itemid) => {
@@ -43,7 +41,7 @@ export const getItemById = async (itemid) => {
 //         throw new Error(error.message);
 //     }
 // }
-//
+
 // export const getItemById = async (itemid) => {
 //     try {
 //         const response = await fetch(`${LOCAL_API_BASE_URL}/items/${itemid}`);

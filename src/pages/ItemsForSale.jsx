@@ -71,14 +71,20 @@ const CenteredContainer = styled.div`
 export default function ItemsForSale() {
   const [itemsForSale, setItemsForSale] = useState([]);
 
-  useEffect(() => {
-    try {
-      getAllItemsForSale()
-        .then(data => setItemsForSale(data))
-    } catch (error) {
-      console.log(error.message)
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     getAllItemsForSale()
+  //       .then(data => setItemsForSale(data))
+  //   } catch (error) {
+  //     console.log(error.message)
+  //   }
+  // }, []);
+
+    useEffect(() => {
+        getAllItemsForSale((data) => {
+            setItemsForSale(data);
+        })
+    }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
