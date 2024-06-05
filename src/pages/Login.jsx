@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { PRODUCTION_API_BASE_URL } from '../utils/globalVariables';
+import {LOCAL_API_BASE_URL, PRODUCTION_API_BASE_URL} from '../utils/globalVariables';
 
 const FormContainer = styled.div`
     display: flex;
@@ -104,6 +104,8 @@ const LoadingMessage = styled.p`
     margin-top: 20px;
 `;
 
+
+
 export function Login({ setIsAuthenticated, setRole }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -111,6 +113,19 @@ export function Login({ setIsAuthenticated, setRole }) {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleResize = () => {
+            console.log('Window resized to:', window.innerWidth, window.innerHeight);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -123,16 +138,16 @@ export function Login({ setIsAuthenticated, setRole }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
-    
+
         try {
-            const response = await fetch(`${PRODUCTION_API_BASE_URL}/auth/login`, {
+            const response = await fetch(`${LOCAL_API_BASE_URL}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email, password }),
             });
-    
+
             if (response.ok) {
                 const responseData = await response.json();
                 sessionStorage.setItem('token', responseData.token);
@@ -149,6 +164,7 @@ export function Login({ setIsAuthenticated, setRole }) {
                 setLoading(false);
             }
         } catch (error) {
+            window.alert("Server is unreachable. Maybe you are using trying to access server through your localhost??")
             setError('Error during login. Please try again later.');
             setLoading(false);
         }
@@ -163,36 +179,41 @@ export function Login({ setIsAuthenticated, setRole }) {
         );
     }
 
+    const goToRegister = () =>{
+        window.location.href = "/register"
+    }
+
     return (
-        <FormContainer>
-            <Headline>Welcome to LAHY</Headline>
-            <SubHeadline>Give something used a new life or find your next treasure today!</SubHeadline>
-            <Form onSubmit={handleSubmit}>
-                <FormField>
-                    <Label htmlFor="email">Email:</Label>
-                    <Input
-                        type="text"
-                        id="email"
-                        value={email}
-                        onChange={handleEmailChange}
-                        required
-                    />
-                </FormField>
-                <FormField>
-                    <Label htmlFor="password">Password:</Label>
-                    <Input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={handlePasswordChange}
-                        required
-                    />
-                </FormField>
-                {error && <ErrorMessage>{error}</ErrorMessage>}
-                <SubmitButton type="submit">Login</SubmitButton>
-            </Form>
-            <RegisterLink to="/register">Don't have an account? No worries! Register here.</RegisterLink>
-        </FormContainer>
+            <FormContainer>
+                <Headline>Welcome to LAHY</Headline>
+                <SubHeadline>Give something used a new life or find your next treasure today!</SubHeadline>
+                <Form onSubmit={handleSubmit}>
+                    <FormField>
+                        <Label htmlFor="email">Email:</Label>
+                        <Input
+                            type="text"
+                            id="email"
+                            value={email}
+                            onChange={handleEmailChange}
+                            required
+                        />
+                    </FormField>
+                    <FormField>
+                        <Label htmlFor="password">Password:</Label>
+                        <Input
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={handlePasswordChange}
+                            required
+                        />
+                    </FormField>
+                    {error && <ErrorMessage>{error}</ErrorMessage>}
+                    <SubmitButton type="submit">Login</SubmitButton>
+                </Form>
+                <RegisterLink to="/register">Don't have an account? No worries! Register here.</RegisterLink>
+                <button onClick={goToRegister}>Go to Register</button>
+            </FormContainer>
     );
 }
 

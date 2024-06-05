@@ -135,6 +135,8 @@ export function Register({ setIsAuthenticated }) {
         setPassword2(event.target.value);
     };
 
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);

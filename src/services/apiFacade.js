@@ -2,8 +2,8 @@ import { PRODUCTION_API_BASE_URL, LOCAL_API_BASE_URL } from '../utils/globalVari
 
 export const getAllItemsForSale = async () => {
     try {
-        const response = await fetch(`${PRODUCTION_API_BASE_URL}/items`);
-        if(!response.ok) throw new Error(`Error fetching all items from ${PRODUCTION_API_BASE_URL}`);
+        const response = await fetch(`${LOCAL_API_BASE_URL}/items`);
+        if(!response.ok) throw new Error(`Error fetching all items from ${LOCAL_API_BASE_URL}`);
         
         const data = await response.json();
         return data;
@@ -14,8 +14,8 @@ export const getAllItemsForSale = async () => {
 
 export const getItemById = async (itemid) => {
     try {
-        const response = await fetch(`${PRODUCTION_API_BASE_URL}/items/${itemid}`);
-        if(!response.ok) throw new Error(`Error fetching all items from ${PRODUCTION_API_BASE_URL}`);
+        const response = await fetch(`${LOCAL_API_BASE_URL}/items/${itemid}`);
+        if(!response.ok) throw new Error(`Error fetching all items from ${LOCAL_API_BASE_URL}`);
         
         const data = await response.json();
         return data;

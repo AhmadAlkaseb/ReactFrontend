@@ -12,6 +12,7 @@ import styled from 'styled-components';
   `;
 
   const ContainerChild = styled.div`
+    max-width: 300px;
     flex-grow: 1;
     flex-basis: 300px;
     padding: 30px 15px;
@@ -47,6 +48,26 @@ import styled from 'styled-components';
     color: white;
   `;
 
+const ScrollButton = styled.button`
+  width: 200px;  
+  background-color: #fda085;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+    &:hover {
+        background-color: #f6d365;
+    }
+    `;
+
+const CenteredContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 export default function ItemsForSale() {
   const [itemsForSale, setItemsForSale] = useState([]);
 
@@ -59,20 +80,29 @@ export default function ItemsForSale() {
     }
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
       <h1>Items for sale</h1>
       <Container>
       {itemsForSale.map((item) => (
         <ContainerChild key={item.id}>
+
           <ItemPhoto src="/item-for-sale.jpg" alt="Item for sale" />
           <Title>{item.title}</Title>
           <Desc>{item.description}</Desc>
           <Price>${item.price}</Price>
           <StyledLink to={`/item/${item.id}`}>See item</StyledLink>
+
         </ContainerChild>    
       ))}
       </Container>
+      <CenteredContainer>
+      <ScrollButton onClick={scrollToTop}>Go back up</ScrollButton>
+      </CenteredContainer>
     </>
   )
 }

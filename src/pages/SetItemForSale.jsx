@@ -22,8 +22,7 @@ export default function SetItemForSale () {
     zipCode: '',
     phoneNumber: ''
   });
-  // const [tags, setTags] = useState([]);
-  // const [tagInput, setTagInput] = useState('');
+
   const [errors, setErrors] = useState({});
   const [itemCreated, setItemCreated] = useState(false);
 
@@ -48,25 +47,14 @@ export default function SetItemForSale () {
     }
   };
 
-  // const handleTagInputChange = (e) => {
-  //   setTagInput(e.target.value);
-  // };
-  //
-  //   const handleAddTag = () => {
-  //       if (tagInput.trim() !== '') {
-  //           setTags((prevTags) => [...prevTags, tagInput.trim()]);
-  //       }
-  //       console.log(tags);
-  //       setTagInput('');
-  //   };
-  //
-  //   const handleTagDelete = (tagToDelete) => {
-  //       setTags((prevTags) => prevTags.filter(tag => tag !== tagToDelete));
-  //   };
-
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Check for errors before submission
+
+      //console.log(e); // her får vi printet alle properties som vores SyntheticEvent indeholder
+
+      e.preventDefault(); //vil denne funktion genindlæse siden, hvilket
+                        // forhindrer JavaScript i at håndtere dataene og sende dem til serveren korrekt
+
+      // Check for errors before submission
     if (Object.keys(errors).length > 0) {
       console.error('Form has errors:', errors);
       return;
@@ -189,25 +177,6 @@ export default function SetItemForSale () {
                   {errors.phoneNumber && <span>{errors.phoneNumber}</span>}
               </label>
           </div>
-          {/*<div>*/}
-          {/*    <label>*/}
-          {/*        Tags:*/}
-          {/*        <input*/}
-          {/*            type="text"*/}
-          {/*            value={tagInput}*/}
-          {/*            onChange={handleTagInputChange}*/}
-          {/*        />*/}
-          {/*        <button type="button" onClick={handleAddTag}>Add Tag</button>*/}
-          {/*    </label>*/}
-          {/*</div>*/}
-          {/*<div>*/}
-          {/*    {tags.map((tag, index) => (*/}
-          {/*        <div key={index}>*/}
-          {/*            {tag}*/}
-          {/*            <button type="button" onClick={() => handleTagDelete(tag)}>Remove</button>*/}
-          {/*        </div>*/}
-          {/*    ))}*/}
-          {/*</div>*/}
           <button type="submit">Create Item</button>
       </form>
           {itemCreated && <h1>Item successfully created</h1>}
