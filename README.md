@@ -50,5 +50,8 @@ Brugere kan oprette sig og logge på hjemmesiden. Hver bruger har mulighed for a
 **Projektbeskrivelsen**  
 [Tryk her](https://github.com/dat3Cph/material/blob/sem2024spring/flowFrontend/week5-project/miniproject.md)  
 
-**Eksamensspørgsmål**  
-[Tryk her](https://docs.google.com/document/d/16wdDaEkcoUTti7GsFC0CHU0pBQGzmmDIOXkZgNhGON8/edit)  
+**Eksamensspørgsmål google-docs**  
+[Tryk her](https://docs.google.com/document/d/16wdDaEkcoUTti7GsFC0CHU0pBQGzmmDIOXkZgNhGON8/edit) 
+
+**Eksamensspørgsmål google-slides**  
+[Tryk her](https://docs.google.com/presentation/d/1hfye87Co4jSr9GYyOfrWBaIixkTUk_A8NIVMBTuUmRY/edit#slide=id.p))  
