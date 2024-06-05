@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PRODUCTION_API_BASE_URL } from '../utils/globalVariables';
+import {LOCAL_API_BASE_URL, PRODUCTION_API_BASE_URL} from '../utils/globalVariables';
 import styled from 'styled-components';
 
 const FormContainer = styled.div`
@@ -115,45 +115,63 @@ const LoadingMessage = styled.p`
 `;
 
 export function Register({ setIsAuthenticated }) {
-    const [email, setEmail] = useState('');
-    const [password1, setPassword1] = useState('');
-    const [password2, setPassword2] = useState('');
+
+    //improved
+    const [formData, setFormData] = useState({
+        email: '',
+        password1: '',
+        password2: ''
+    });
+
+
+        //before
+    // const [email, setEmail] = useState('');
+    // const [password1, setPassword1] = useState('');
+    // const [password2, setPassword2] = useState('');
+
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    };
+    // const handleEmailChange = (event) => {
+    //     setEmail(event.target.value);
+    // };
+    //
+    // const handlePassword1Change = (event) => {
+    //     setPassword1(event.target.value);
+    // };
+    //
+    // const handlePassword2Change = (event) => {
+    //     setPassword2(event.target.value);
+    // };
 
-    const handlePassword1Change = (event) => {
-        setPassword1(event.target.value);
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value
+        }));
     };
-
-    const handlePassword2Change = (event) => {
-        setPassword2(event.target.value);
-    };
-
 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
 
-        if (password1 !== password2) {
+        if (formData.password1 !== formData.password2) {
             setError('Passwords do not match.');
             setLoading(false);
             return;
         }
 
         try {
-            const response = await fetch(`${PRODUCTION_API_BASE_URL}/auth/register`, {
+            const response = await fetch(`${LOCAL_API_BASE_URL}/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password: password1 }),
+                body: JSON.stringify({ email: formData.email, password: formData.password1 }),
             });
 
             if (response.ok) {
@@ -202,8 +220,9 @@ export function Register({ setIsAuthenticated }) {
                     <Input
                         type="email"
                         id="email"
-                        value={email}
-                        onChange={handleEmailChange}
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         required
                     />
                 </FormField>
@@ -212,8 +231,9 @@ export function Register({ setIsAuthenticated }) {
                     <Input
                         type="password"
                         id="password1"
-                        value={password1}
-                        onChange={handlePassword1Change}
+                        name="password1"
+                        value={formData.password1}
+                        onChange={handleChange}
                         required
                     />
                 </FormField>
@@ -222,8 +242,9 @@ export function Register({ setIsAuthenticated }) {
                     <Input
                         type="password"
                         id="password2"
-                        value={password2}
-                        onChange={handlePassword2Change}
+                        name="password2"
+                        value={formData.password2}
+                        onChange={handleChange}
                         required
                     />
                 </FormField>
