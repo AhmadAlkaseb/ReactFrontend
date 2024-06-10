@@ -28,6 +28,7 @@ import styled from 'styled-components';
     text-align: center;
   `;
 
+
 export default () => {
   let params = useParams();
   const [item, setItem] = useState({});

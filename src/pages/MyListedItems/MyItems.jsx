@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { PRODUCTION_API_BASE_URL } from '../../utils/globalVariables';
+import {LOCAL_API_BASE_URL, PRODUCTION_API_BASE_URL} from '../../utils/globalVariables';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -22,7 +22,9 @@ const SearchInput = styled.input`
 
 const ItemsContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    // definer gitter kolonne. 3 kolonner med fraktionel bredde 1
+    // dvs udfylder tilgængelig plads ligeligt
+    grid-template-columns: repeat(3, 1fr); 
     gap: 20px;
     margin-top: 20px;
 `;
@@ -84,7 +86,7 @@ const MyItems = ({ update, setUpdate, setItem }) => {
     }, [searchQuery, items]);
 
     const fetchItems = () => {
-        fetch(`${PRODUCTION_API_BASE_URL}/items/personal/` + sessionStorage.getItem('email'), {
+        fetch(`${LOCAL_API_BASE_URL}/items/personal/` + sessionStorage.getItem('email'), {
             headers: {
                 'Authorization': `Bearer ` + sessionStorage.getItem('token'),
                 'Content-Type': 'application/json',
@@ -104,19 +106,27 @@ const MyItems = ({ update, setUpdate, setItem }) => {
             .catch(error => console.error('Error fetching items:', error));
     };
 
-    const handleDelete = (event) => {
-        fetch(`${PRODUCTION_API_BASE_URL}/items/` + sessionStorage.getItem('email'), {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ` + sessionStorage.getItem('token'),
-                'Content-Type': 'application/json',
-            },
-            body: event.target.id
-        }).then(() => {
-            setUpdate(!update);
-        }).catch(error => {
-            console.error('Error deleting item:', error);
-        });
+    const handleButton = (event) => {
+        if(event.target.name === 'delete') {
+            console.log(event.target)
+            fetch(`${LOCAL_API_BASE_URL}/items/` + sessionStorage.getItem('email'), {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ` + sessionStorage.getItem('token'),
+                    'Content-Type': 'application/json',
+                },
+                body: event.target.id
+            }).then(() => {
+                setUpdate(!update);
+            }).catch(error => {
+                console.error('Error deleting item:', error);
+            });
+        } else if(event.target.name === 'edit') {
+            const id = event.target.id;
+            const item = items.find(item => item.id.toString() === id);
+            console.log(item)
+            handleEdit(item);
+        }
     };
 
     const handleEdit = (item) => {
@@ -134,7 +144,7 @@ const MyItems = ({ update, setUpdate, setItem }) => {
                 />
             </SearchContainer>
 
-            <ItemsContainer>
+            <ItemsContainer onClick={handleButton}>
                 {filteredItems.length > 0 ? (
                     filteredItems.map((item) => (
                         <ItemCard key={item.id}>
@@ -148,8 +158,8 @@ const MyItems = ({ update, setUpdate, setItem }) => {
                             <ItemDetail>Address: {item.address}</ItemDetail>
                             <ItemDetail>Zip Code: {item.postalCode}</ItemDetail>
                             <ActionButtons>
-                                <ActionButton onClick={() => handleEdit(item)}>Edit</ActionButton>
-                                <ActionButton $primary id={item.id} onClick={handleDelete}>Delete</ActionButton>
+                                <ActionButton name='edit' id={item.id}>Edit</ActionButton>
+                                <ActionButton name='delete' $primary id={item.id}>Delete</ActionButton>
                             </ActionButtons>
                         </ItemCard>
                     ))
@@ -160,5 +170,4 @@ const MyItems = ({ update, setUpdate, setItem }) => {
         </Container>
     );
 };
-
 export default MyItems;

@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
 import { useState } from "react";
+import renderMenu from "./RenderMenu.jsx";
+import RenderMenu from "./RenderMenu.jsx";
 
 const Nav = styled.nav.attrs(props => ({
   className: props.$isOpen ? 'open' : ''
@@ -126,11 +128,13 @@ const MainNav = ({ role }) => {
     setIsOpen(!isOpen);
   };
 
+      //before using switch for menu
   const closeMenu = () => {
     setIsOpen(false);
   };
 
   const isAdmin = role && role.includes('admin');
+
 
   return (
       <Nav $isOpen={isOpen}>
@@ -139,14 +143,15 @@ const MainNav = ({ role }) => {
           <span></span>
           <span></span>
         </div>
-        <ul>
-          <li><NavLink to="/setitemforsale" onClick={closeMenu}>Sell item</NavLink></li>
-          <li><NavLink to="/mylisteditems" onClick={closeMenu}>My items</NavLink></li>
-          <li><NavLink to="/home" onClick={closeMenu}>Home</NavLink></li>
-          <li><NavLink to="/itemsforsale" onClick={closeMenu}>Shop deals</NavLink></li>
-          {isAdmin && <li><NavLink to="/admin" onClick={closeMenu}>Administration</NavLink></li>}
-          <li><NavLink to="/logout" onClick={closeMenu}>Logout</NavLink></li>
-        </ul>
+          <RenderMenu role={role} closeMenu={() => setIsOpen(false)}/>
+        {/*<ul>*/}
+        {/*  <li><NavLink to="/setitemforsale" onClick={closeMenu}>Sell item</NavLink></li>*/}
+        {/*  <li><NavLink to="/mylisteditems" onClick={closeMenu}>My items</NavLink></li>*/}
+        {/*  <li><NavLink to="/home" onClick={closeMenu}>Home</NavLink></li>*/}
+        {/*  <li><NavLink to="/itemsforsale" onClick={closeMenu}>Shop deals</NavLink></li>*/}
+        {/*  {isAdmin && <li><NavLink to="/admin" onClick={closeMenu}>Administration</NavLink></li>}*/}
+        {/*  <li><NavLink to="/logout" onClick={closeMenu}>Logout</NavLink></li>*/}
+        {/*</ul>*/}
       </Nav>
   );
 };

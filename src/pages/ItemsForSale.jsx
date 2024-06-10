@@ -13,8 +13,8 @@ import styled from 'styled-components';
 
   const ContainerChild = styled.div`
     max-width: 300px;
-    flex-grow: 1;
-    flex-basis: 300px;
+    flex-grow: 1; // tillader dynamisk størrelse
+    flex-basis: 300px; //maks 300px i bredden
     padding: 30px 15px;
     text-align: center;
     background-color: #e3e3e3;
@@ -87,22 +87,51 @@ export default function ItemsForSale() {
     }, []);
 
   const scrollToTop = () => {
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  return (
+/*   CALLBACK FUNKTION
+    const renderItemsForSale = (item) => (
+        <ContainerChild key={item.id}>
+            <ItemPhoto src="/item-for-sale.jpg" alt="Item for sale" />
+            <Title>{item.title}</Title>
+            <Desc>{item.description}</Desc>
+            <Price>${item.price}</Price>
+            <StyledLink to={`/item/${item.id}`}>See item</StyledLink>
+        </ContainerChild>
+    );
+ */
+
+    const handleContainerClick = (e) => {
+        console.log('Container clicked');
+    };
+
+    const handleContainerChildClick = (e) => {
+        console.log('ContainerChild clicked');
+
+        //e.stopPropagation();
+    };
+
+  const handleStyledLink = (e) => {
+    console.log('StyledLink clicked');
+    // Stop event bubbling for at demonstrere
+    e.stopPropagation();
+  };
+
+
+    return (
     <>
       <h1>Items for sale</h1>
-      <Container>
+      <Container onClick={handleContainerClick}>
       {itemsForSale.map((item) => (
-        <ContainerChild key={item.id}>
+        <ContainerChild key={item.id} onClick={handleContainerChildClick}>
 
           <ItemPhoto src="/item-for-sale.jpg" alt="Item for sale" />
           <Title>{item.title}</Title>
           <Desc>{item.description}</Desc>
           <Price>${item.price}</Price>
-          <StyledLink to={`/item/${item.id}`}>See item</StyledLink>
-
+          <StyledLink  onClick={handleStyledLink} to={`/item/${item.id}`}>See item</StyledLink>
         </ContainerChild>    
       ))}
       </Container>

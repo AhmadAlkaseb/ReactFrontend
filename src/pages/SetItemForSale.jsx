@@ -27,10 +27,10 @@ export default function SetItemForSale () {
   const [itemCreated, setItemCreated] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value} = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: value
     });
 
     if (name === 'zipCode' || name === 'phoneNumber') {

@@ -114,7 +114,7 @@ const LoadingMessage = styled.p`
     margin-top: 20px;
 `;
 
-export function Register({ setIsAuthenticated }) {
+export function Register({setIsAuthenticated }) {
 
         //improved
     const [formData, setFormData] = useState({

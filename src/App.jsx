@@ -12,6 +12,7 @@ import SetItemForSale from './pages/SetItemForSale';
 import MyItemsPage from './pages/MyListedItems/MyItemsPage';
 import Item from './pages/Item';
 import AdministrationPage from './pages/admin/AdministrationPage.jsx';
+import UncontrolledForm from "./HOF-extraCode/UnControlledComponent.jsx";
 
 
 
@@ -25,6 +26,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/uncontrolledform" element={<UncontrolledForm />} />
         <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} setRole={setRole} />} />
         <Route path="/register" element={<Register setIsAuthenticated={setIsAuthenticated} />} />

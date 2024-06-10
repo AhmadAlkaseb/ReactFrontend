@@ -105,8 +105,8 @@ const LoadingMessage = styled.p`
 `;
 
 
-
-export function Login({ setIsAuthenticated, setRole }) {
+// fremfor at definere props, kan man blot skrive props og tilgå data via denne "props.setIsAuthenticated"
+export function Login(props, { setIsAuthenticated, setRole }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -122,6 +122,7 @@ export function Login({ setIsAuthenticated, setRole }) {
         window.addEventListener('resize', handleResize);
 
         return () => {
+            console.log("removed")
             window.removeEventListener('resize', handleResize);
         };
     }, []);
@@ -149,7 +150,7 @@ export function Login({ setIsAuthenticated, setRole }) {
             });
 
             if (response.ok) {
-                const responseData = await response.json();
+                 const responseData = await response.json();
                 sessionStorage.setItem('token', responseData.token);
                 sessionStorage.setItem('email', responseData.username);
                 sessionStorage.setItem('roles', JSON.stringify(responseData.roles));
@@ -159,6 +160,7 @@ export function Login({ setIsAuthenticated, setRole }) {
                 setLoading(false);
                 navigate('/home');
             } else {
+                //Promise rejected griber fejlen og gør noget med den...
                 const errorData = await response.json();
                 setError(errorData.message);
                 setLoading(false);
@@ -170,6 +172,7 @@ export function Login({ setIsAuthenticated, setRole }) {
         }
     };
 
+    // if-else conditional rendering
     if (loading) {
         return (
             <LoadingContainer>

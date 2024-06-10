@@ -1,6 +1,6 @@
 import { PRODUCTION_API_BASE_URL, LOCAL_API_BASE_URL } from '../utils/globalVariables'
 
-//med callback
+//med callback... Dette er også en HOF
 const fetchItems = async (url, callback) => {
     try {
         const response = await fetch(url);
