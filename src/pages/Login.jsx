@@ -106,7 +106,7 @@ const LoadingMessage = styled.p`
 
 
 // fremfor at definere props, kan man blot skrive props og tilgå data via denne "props.setIsAuthenticated"
-export function Login(props, { setIsAuthenticated, setRole }) {
+export function Login({ setIsAuthenticated, setRole }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -166,6 +166,7 @@ export function Login(props, { setIsAuthenticated, setRole }) {
                 setLoading(false);
             }
         } catch (error) {
+            console.log(error);
             window.alert("Server is unreachable. Maybe you are using trying to access server through your localhost??")
             setError('Error during login. Please try again later.');
             setLoading(false);
