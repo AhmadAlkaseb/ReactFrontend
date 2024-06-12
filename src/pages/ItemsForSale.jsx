@@ -83,6 +83,7 @@ export default function ItemsForSale() {
     useEffect(() => {
         getAllItemsForSale((data) => {
             setItemsForSale(data);
+            restOfItems(itemsForSale)
         })
     }, []);
 
@@ -120,11 +121,18 @@ export default function ItemsForSale() {
   };
 
 
+function restOfItems(list){
+  const [item1, item2, ...restOfItemsForSale] = list;
+  console.log(item1);
+  console.log(item2);
+  console.log(restOfItemsForSale);
+}
+
     return (
     <>
       <h1>Items for sale</h1>
       <Container onClick={handleContainerClick}>
-      {itemsForSale.map((item) => (
+      {itemsForSale.map((item) => ( 
         <ContainerChild key={item.id} onClick={handleContainerChildClick}>
 
           <ItemPhoto src="/item-for-sale.jpg" alt="Item for sale" />

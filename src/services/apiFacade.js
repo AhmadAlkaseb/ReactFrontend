@@ -12,6 +12,25 @@ const fetchItems = async (url, callback) => {
     }
 };
 
+
+const fetchItemsWithPromiseKeyword = (url) => {
+    return new Promise((resolve, reject) => {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Error fetching items from ${url}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                resolve(data);
+            })
+            .catch(error => {
+                reject(new Error(error.message));
+            });
+    });
+};
+
 export const getAllItemsForSale = async (callback) => {
     await fetchItems(`${LOCAL_API_BASE_URL}/items`, callback);
 };

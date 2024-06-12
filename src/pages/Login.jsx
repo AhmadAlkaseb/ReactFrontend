@@ -150,7 +150,7 @@ export function Login({ setIsAuthenticated, setRole }) {
             });
 
             if (response.ok) {
-                 const responseData = await response.json();
+                const responseData = await response.json();
                 sessionStorage.setItem('token', responseData.token);
                 sessionStorage.setItem('email', responseData.username);
                 sessionStorage.setItem('roles', JSON.stringify(responseData.roles));
